@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: darphaneapp
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - NODE_ENV=production
