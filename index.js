@@ -82,18 +82,6 @@ async function check_new_products_with_selenium(url) {
     finally {
         await driver.quit();
     }
-    result.push({
-        title: "emre",
-        price: 5,
-        status: "Sepete Ekle",
-        type: "test"
-    })
-    result.push({
-        title: "derya",
-        price: 9,
-        status: "Sepete Ekle",
-        type: "test"
-    })
 
     result = result.filter(item => item.status === "Sepete Ekle")
     console.log("res ((>", result)
