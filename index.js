@@ -72,7 +72,7 @@ async function check_new_products_with_selenium(url) {
                     type: type
                 });
             } catch (e) {
-
+                console.log("eee ==>",e.message)
             }
         }
 
