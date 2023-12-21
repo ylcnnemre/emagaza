@@ -78,6 +78,7 @@ async function check_new_products_with_selenium(url) {
 
     }
     catch (err) {
+        console.log("selenium error mesajı ==>",err.message)
     }
     finally {
         await driver.quit();
