@@ -82,6 +82,18 @@ async function check_new_products_with_selenium(url) {
     finally {
         await driver.quit();
     }
+    result.push({
+        title: "emre",
+        price: 5,
+        status: "Sepete Ekle",
+        type: "test"
+    })
+    result.push({
+        title: "derya",
+        price: 9,
+        status: "Sepete Ekle",
+        type: "test"
+    })
 
     result = result.filter(item => item.status === "Sepete Ekle")
     console.log("res ((>", result)
@@ -130,22 +142,19 @@ function sendMessage(message) {
 
 bot.on("message", (msg) => {
     try {
-        console.log("msg ==>", msg)
         if (msg.text.toLowerCase().trim() == "control") {
             bot.sendMessage(chatid, "server çalışıyor")
         }
         else if (msg.text.toLocaleLowerCase().trim() == "lastupdate") {
-            console.log("update ==>", updatetime)
-            bot.sendMessage(chatid, updatetime == "" ? "henüz program başlamadı" : updatetime)
+            bot.sendMessage(chatid, updatetime=="" ? "program henüz başlamadı" : updatetime )
         }
         else if (msg.text.toLocaleLowerCase().trim() == "help") {
             bot.sendMessage(chatid, `- control\n- lastupdate`)
         }
     }
     catch (err) {
-        console.log("err ==>", err)
-    }
 
+    }
 })
 
 setInterval(() => {
