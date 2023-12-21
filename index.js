@@ -26,7 +26,7 @@ async function check_new_products_with_selenium(url) {
     options.addArguments('--no-sandbox');
     options.addArguments('--disable-dev-shm-usage');
 
-    
+
     const driver = await new Builder().forBrowser('chrome').setChromeOptions(options).build();
 
     let result = [];
@@ -129,16 +129,23 @@ function sendMessage(message) {
 }
 
 bot.on("message", (msg) => {
+    try {
+        console.log("msg ==>", msg)
+        if (msg.text.toLowerCase().trim() == "control") {
+            bot.sendMessage(chatid, "server çalışıyor")
+        }
+        else if (msg.text.toLocaleLowerCase().trim() == "lastupdate") {
+            console.log("update ==>", updatetime)
+            bot.sendMessage(chatid, updatetime == "" ? "henüz program başlamadı" : updatetime)
+        }
+        else if (msg.text.toLocaleLowerCase().trim() == "help") {
+            bot.sendMessage(chatid, `- control\n- lastupdate`)
+        }
+    }
+    catch (err) {
+        console.log("err ==>", err)
+    }
 
-    if (msg.text.toLowerCase().trim() == "control") {
-        bot.sendMessage(chatid, "server çalışıyor")
-    }
-    else if (msg.text.toLocaleLowerCase().trim() == "lastupdate") {
-        bot.sendMessage(chatid, updatetime)
-    }
-    else if (msg.text.toLocaleLowerCase().trim() == "help") {
-        bot.sendMessage(chatid, `- control\n- lastupdate`)
-    }
 })
 
 setInterval(() => {
