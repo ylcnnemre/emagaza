@@ -99,12 +99,6 @@ async function check_new_products_with_selenium(url) {
         lastProducts["hatıra"] = result[0]
     }
 
-    result.push({
-        "title": "KRAL 42. MAHMUT ETLİ EKMEK HATIRA PARASI",
-        "price": 31,
-        "status": "Sepete Ekle",
-        "type": "Hamur"
-    })
 
     result = result.filter(item => item.status === "Sepete Ekle")
     console.log("res ==> ", result)
