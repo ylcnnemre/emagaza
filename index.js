@@ -159,7 +159,7 @@ const formatJsonMessage = (msg) => {
     return message !== "" ? message : "ürün bulunamadı"
 }
 
-bot.on("message", (msg) => {
+/* bot.on("message", (msg) => {
     try {
         if (msg.text.toLowerCase().trim() == "control") {
             bot.sendMessage(chatid, "server çalışıyor")
@@ -183,7 +183,7 @@ bot.on("message", (msg) => {
     catch (err) {
         console.log("err ==>", err.message)
     }
-})
+}) */
 
 setInterval(() => {
     processUrlsSequentially()
