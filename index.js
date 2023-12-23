@@ -99,6 +99,13 @@ async function check_new_products_with_selenium(url) {
         lastProducts["hatıra"] = result[0]
     }
 
+    result.push({
+        "title": "KRAL 42. MAHMUT ETLİ EKMEK HATIRA PARASI",
+        "price": 31,
+        "status": "Sepete Ekle",
+        "type": "Hamur"
+    })
+
     result = result.filter(item => item.status === "Sepete Ekle")
     console.log("res ==> ", result)
     if (result.length > 0) {
@@ -145,11 +152,11 @@ function sendMessage(message) {
 }
 
 const formatJsonMessage = (msg) => {
-    let message=""
-    Object.entries(msg).map(([key,val])=>{
-        message+=`${key} : ${val} \n\n `
+    let message = ""
+    Object.entries(msg).map(([key, val]) => {
+        message += `${key} : ${val} \n\n `
     })
-    return message!=="" ? message : "ürün bulunamadı"
+    return message !== "" ? message : "ürün bulunamadı"
 }
 
 bot.on("message", (msg) => {
@@ -174,7 +181,7 @@ bot.on("message", (msg) => {
         }
     }
     catch (err) {
-        console.log("err ==>",err.message)
+        console.log("err ==>", err.message)
     }
 })
 
