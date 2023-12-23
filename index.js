@@ -2,7 +2,7 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
 const firefox = require('selenium-webdriver/firefox');
 const TelegramBot = require("node-telegram-bot-api")
 
-const token = "6770733271:AAGhwwW9MpF66lQf8kHZdrrJbGSEtdiqh6o"
+const token = "6615794911:AAFsKSzwsMqyOhU-QTWXcVIOlXgsO6q1p48"
 const chatid = "337475198"
 const bot = new TelegramBot(token, { polling: true });
 let updatetime = ""
