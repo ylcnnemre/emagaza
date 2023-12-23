@@ -3,7 +3,7 @@ const firefox = require('selenium-webdriver/firefox');
 const TelegramBot = require("node-telegram-bot-api")
 
 const token = "6615794911:AAFsKSzwsMqyOhU-QTWXcVIOlXgsO6q1p48"
-const chatid = "337475198"
+const chatid = "-1002113828798"
 const bot = new TelegramBot(token, { polling: true });
 let updatetime = ""
 const lastProducts = {
@@ -159,31 +159,6 @@ const formatJsonMessage = (msg) => {
     return message !== "" ? message : "ürün bulunamadı"
 }
 
-/* bot.on("message", (msg) => {
-    try {
-        if (msg.text.toLowerCase().trim() == "control") {
-            bot.sendMessage(chatid, "server çalışıyor")
-        }
-        else if (msg.text.toLocaleLowerCase().trim() == "lastupdate") {
-            bot.sendMessage(chatid, updatetime == "" ? "program henüz başlamadı" : updatetime)
-        }
-        else if (msg.text.toLocaleLowerCase().trim() == "help") {
-            bot.sendMessage(chatid, `- control\n- lastupdate\n- gümüş\n- bronz\n- hatıra`)
-        }
-        else if (msg.text.toLocaleLowerCase().trim() === "gümüş") {
-            bot.sendMessage(chatid, formatJsonMessage(lastProducts["gümüs"]))
-        }
-        else if (msg.text.toLocaleLowerCase().trim() === "bronz") {
-            bot.sendMessage(chatid, formatJsonMessage(lastProducts["bronz"]))
-        }
-        else if (msg.text.toLocaleLowerCase().trim() === "hatıra") {
-            bot.sendMessage(chatid, formatJsonMessage(lastProducts["hatıra"]))
-        }
-    }
-    catch (err) {
-        console.log("err ==>", err.message)
-    }
-}) */
 
 setInterval(() => {
     processUrlsSequentially()
