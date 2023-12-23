@@ -3,7 +3,7 @@ const firefox = require('selenium-webdriver/firefox');
 const TelegramBot = require("node-telegram-bot-api")
 
 const token = "6615794911:AAFsKSzwsMqyOhU-QTWXcVIOlXgsO6q1p48"
-const chatid = "-1002113828798"
+const chatid = "@emagazabot"
 const bot = new TelegramBot(token, { polling: true });
 let updatetime = ""
 const lastProducts = {
@@ -98,7 +98,6 @@ async function check_new_products_with_selenium(url) {
     else if (type == "diger") {
         lastProducts["hatıra"] = result[0]
     }
-
 
     result = result.filter(item => item.status === "Sepete Ekle")
     console.log("res ==> ", result)
