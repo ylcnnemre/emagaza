@@ -6,6 +6,11 @@ const token = "6770733271:AAGhwwW9MpF66lQf8kHZdrrJbGSEtdiqh6o"
 const chatid = "337475198"
 const bot = new TelegramBot(token, { polling: true });
 let updatetime = ""
+const lastProducts = {
+    "gümüs": {},
+    "bronz": {},
+    "hatıra": {}
+}
 function selectType(url) {
     if (url === "https://emagaza.darphane.gov.tr/gumus-hatira-para") {
         return "gümüs";
@@ -72,32 +77,30 @@ async function check_new_products_with_selenium(url) {
                     type: type
                 });
             } catch (e) {
-                console.log("eee ==>",e.message)
+                console.log("eee ==>", e.message)
             }
         }
 
     }
     catch (err) {
-        console.log("selenium error mesajı ==>",err.message)
+        console.log("selenium error mesajı ==>", err.message)
     }
     finally {
         await driver.quit();
     }
-    result.push({
-        title: "emre",
-        price: 5,
-        status: "Sepete Ekle",
-        type: "test"
-    })
-    result.push({
-        title: "derya",
-        price: 9,
-        status: "Sepete Ekle",
-        type: "test"
-    })
+
+    if (type == "bronz") {
+        lastProducts["bronz"] = result[0]
+    }
+    else if (type == "gümüs") {
+        lastProducts["gümüs"] = result[0]
+    }
+    else if (type == "diger") {
+        lastProducts["hatıra"] = result[0]
+    }
 
     result = result.filter(item => item.status === "Sepete Ekle")
-    console.log("res ((>", result)
+    console.log("res ==> ", result)
     if (result.length > 0) {
         const responseData = {}
 
@@ -141,20 +144,37 @@ function sendMessage(message) {
     });
 }
 
+const formatJsonMessage = (msg) => {
+    let message=""
+    Object.entries(msg).map(([key,val])=>{
+        message+=`${key} : ${val} \n\n `
+    })
+    return message!=="" ? message : "ürün bulunamadı"
+}
+
 bot.on("message", (msg) => {
     try {
         if (msg.text.toLowerCase().trim() == "control") {
             bot.sendMessage(chatid, "server çalışıyor")
         }
         else if (msg.text.toLocaleLowerCase().trim() == "lastupdate") {
-            bot.sendMessage(chatid, updatetime=="" ? "program henüz başlamadı" : updatetime )
+            bot.sendMessage(chatid, updatetime == "" ? "program henüz başlamadı" : updatetime)
         }
         else if (msg.text.toLocaleLowerCase().trim() == "help") {
-            bot.sendMessage(chatid, `- control\n- lastupdate`)
+            bot.sendMessage(chatid, `- control\n- lastupdate\n- gümüş\n- bronz\n- hatıra`)
+        }
+        else if (msg.text.toLocaleLowerCase().trim() === "gümüş") {
+            bot.sendMessage(chatid, formatJsonMessage(lastProducts["gümüs"]))
+        }
+        else if (msg.text.toLocaleLowerCase().trim() === "bronz") {
+            bot.sendMessage(chatid, formatJsonMessage(lastProducts["bronz"]))
+        }
+        else if (msg.text.toLocaleLowerCase().trim() === "hatıra") {
+            bot.sendMessage(chatid, formatJsonMessage(lastProducts["hatıra"]))
         }
     }
     catch (err) {
-
+        console.log("err ==>",err.message)
     }
 })
 
