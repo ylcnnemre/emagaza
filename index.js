@@ -121,7 +121,7 @@ const urls = [
 
 async function processUrlsSequentially() {
     console.log("program çalıştııı")
-    updateTime = new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
+    updatetime = new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
 
     for (const url of urls) {
         await check_new_products_with_selenium(url)
