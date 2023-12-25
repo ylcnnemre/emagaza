@@ -102,7 +102,7 @@ async function check_new_products_with_selenium(url) {
 
 
     result = result.filter(item => item.status === "Sepete Ekle")
-    
+
     if (result.length > 0) {
         const responseData = {}
 
@@ -121,7 +121,8 @@ const urls = [
 
 async function processUrlsSequentially() {
     console.log("program çalıştııı")
-    updatetime = new Date().toLocaleString()
+    updateTime = new Date().toLocaleString("tr-TR", { timeZone: "Europe/Istanbul" });
+
     for (const url of urls) {
         await check_new_products_with_selenium(url)
         await sleep(10000); // 10 saniye beklet
@@ -162,9 +163,8 @@ bot.on("message", (msg) => {
         else if (msg.text.toLocaleLowerCase().trim() == "lastupdate") {
             bot.sendMessage(groupId, updatetime == "" ? "program henüz başlamadı" : updatetime)
         }
-        else if(msg.text.toLocaleLowerCase().trim()=="senfoni")
-        {
-            bot.sendMessage(groupId,"ben hiç öyle bir şey duymadım")
+        else if (msg.text.toLocaleLowerCase().trim() == "senfoni") {
+            bot.sendMessage(groupId, "ben hiç öyle bir şey duymadım")
         }
         else if (msg.text.toLocaleLowerCase().trim() == "help") {
             bot.sendMessage(groupId, `- control\n- lastupdate\n- gümüş\n- bronz\n- hatıra`)
