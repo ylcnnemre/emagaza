@@ -188,4 +188,4 @@ bot.on("message", (msg) => {
 
 setInterval(() => {
     processUrlsSequentially()
-}, 120000)
+}, 3000000)
