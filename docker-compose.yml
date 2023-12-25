@@ -2,7 +2,7 @@ version: '3'
 services:
   app:
     build: .
-    restart : "always"
+    restart : always
     container_name: darphaneapp
     volumes:
       - .:/usr/src/app
